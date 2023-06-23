@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Banque;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
-class BanqueController extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $banques = Banque::all();
+        $clients = Client::all();
 
-        return view('emprunt.liste_banque', compact('banques'));
+        return view('emprunt.liste_client', compact('clients'));
     }
 
     /**
@@ -22,7 +22,7 @@ class BanqueController extends Controller
      */
     public function create()
     {
-        return view('emprunt.banque');
+        return view('emprunt.client');
     }
 
     /**
@@ -32,19 +32,19 @@ class BanqueController extends Controller
     {
         $request->validate([
             'nom' => 'required|unique:banques',
-            'email' => 'required',
-            'adresse' => 'required',
+            'prenom' => 'required',
         ]);
 
-        $banque = new Banque();
-        $banque->nom = $request->nom;
-        $banque->email = $request->email;
-        $banque->adresse_banque = $request->adresse;
+        $client = new Client();
+        $client->nom = $request->nom;
+        $client->prenom= $request->prenom;
+        $client->code_pin = $request->code_pin;
+        $client->telephone = $request->telephone;
 
         //sauvegarder de la banque
-        $banque->save();
+        $client->save();
 
-        return redirect('banques');
+        return redirect('clients');
     }
 
     /**
@@ -76,13 +76,6 @@ class BanqueController extends Controller
      */
     public function destroy(string $id)
     {
-    }
-
-    public function supprimer(string $id)
-    {
-        $banque = Banque::find($id);
-        $banque->delete();
-
-        return redirect('banques');
+        //
     }
 }

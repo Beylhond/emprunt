@@ -23,32 +23,28 @@
 
         <!--formulaire-->
 
-        <div class="col-md-4">
-            <form>
+        <div class="col-md-6">
+        <form method="post" action="{{ route('clients.store')}}" >
+                @csrf
                 <h1>Formilaire du client</h1>
+               
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Banque</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="banque">
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Téléphone</label>
-                    <input type="tel" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer le numéro de téléphone">
-                    
+                    <label for="exampleInputPassword1">Nom</label>
+                    <input type="text" name = "nom" class="form-control" id="exampleInputPassword1" placeholder="Nom">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">nom</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="nom">
+                    <label for="exampleInputPassword1">Prénom</label>
+                    <input type="text" name ="prenom" class="form-control" id="exampleInputPassword1" placeholder="Prénom">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">prenom</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="prenom">
+                    <label for="exampleInputPassword1">Téléphone</label>
+                    <input type="text" name ="telephone" class="form-control" id="exampleInputPassword1" placeholder="Téléphone">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">code_pin</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="code_pin">
+                    <input type="text" name = "code_pin" class="form-control" id="exampleInputPassword1" placeholder="code_pin">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
             </form>
         <div>
     </div>

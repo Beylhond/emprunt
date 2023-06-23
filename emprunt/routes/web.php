@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BanqueController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,6 @@ Route::get('/', function () {
 Route::get('client', function () {
     return view('client');
 });
-Route::get('liste_banque',  [BanqueController::class, 'index'])->name('liste_banque');
 
 
 Route::get('/dashboard', function () {
@@ -32,6 +32,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    Route::resource('banques', BanqueController::class);
+    Route::resource('clients', ClientController::class);
+
+    Route::get('supprimer/{id}/',[BanqueController::class, 'supprimer'])->name('supprimer');
+
 });
 
 require __DIR__.'/auth.php';

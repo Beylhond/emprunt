@@ -16,7 +16,11 @@
         <ul class="nav justify-content-end">
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('logout') }}">Banque</a>
+                <a class="nav-link" href="{{ route('banques.index') }}">Banques</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('clients.index') }}">Clients</a>
             </li>
              
             <li class="nav-item">
@@ -25,25 +29,11 @@
              
         </ul>
 
-        <!--formulaire-->
 
-        <div class="col-md-4">
-            <form>
-                <h1>Emprunt bancaire</h1>
+        <!-- Contenu de la page de l'admin -->
+        <h1>Bienvenu {{ Auth::user()->name }}
 
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Téléphone</label>
-                    <input type="tel" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer le numéro de téléphone">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Montant</label>
-                    <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Montant">
-                </div>
-                 
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        <div>
+        
     </div>
 
 
