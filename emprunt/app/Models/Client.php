@@ -18,4 +18,9 @@ class Client extends Model
      'code_pin',
 
     ];
+
+    public function banque()
+    {
+        return $this->belongsTo(Banque::class);
+    } 
 }

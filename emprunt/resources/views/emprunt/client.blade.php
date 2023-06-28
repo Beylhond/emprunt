@@ -14,11 +14,7 @@
  
     <div class="container mt-4">
         <ul class="nav justify-content-end">
-             
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('login') }}">compte du client</a>
-            </li>
-             
+              
         </ul>
 
         <!--formulaire-->
@@ -26,29 +22,41 @@
         <div class="col-md-6">
         <form method="post" action="{{ route('clients.store')}}" >
                 @csrf
-                <h1>Formilaire du client</h1>
-               
+                <h1>Formulaire du client</h1>
+             
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Nom</label>
-                    <input type="text" name = "nom" class="form-control" id="exampleInputPassword1" placeholder="Nom">
+                    <label for="exampleInputPassword1">Nom de la banque</label>
+                    <select  name="banque"  class="form-select" aria-label="Default select example">
+                        <option selected>Sélectionner une banque</option>
+
+                        @foreach($banques as $banque)
+                            <option value="{{ $banque->id }}">{{ $banque->nom }}</option>
+                        @endforeach
+                        
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Nom</label>
+                    <input type="text" name = "nom" class="form-control text-uppercase" />
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Prénom</label>
-                    <input type="text" name ="prenom" class="form-control" id="exampleInputPassword1" placeholder="Prénom">
+                    <input type="text" name ="prenom" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Téléphone</label>
-                    <input type="text" name ="telephone" class="form-control" id="exampleInputPassword1" placeholder="Téléphone">
+                    <input type="text" name ="telephone" class="form-control"  />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">code_pin</label>
-                    <input type="text" name = "code_pin" class="form-control" id="exampleInputPassword1" placeholder="code_pin">
+                    <label for="exampleInputPassword1">Code Pin</label>
+                    <input type="password" name = "code_pin" class="form-control" />
                 </div>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <a href="{{ route('welcome')}}"  class="btn btn-default">Annuler</a>
             </form>
         <div>
-    </div>
-
+    </div> 
 
     <script src="js/bootstrap.min.js" ></script>
     

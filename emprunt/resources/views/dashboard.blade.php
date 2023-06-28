@@ -16,16 +16,27 @@
         <ul class="nav justify-content-end">
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('banques.index') }}">Banques</a>
+                <a class="nav-link" href="{{ route('banques.index') }}">Liste des banques</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('clients.index') }}">Clients</a>
-            </li>
+                <a class="nav-link" href="{{ route('clients.index') }}">Liste des clients</a>
+            </li> 
              
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('logout') }}">Déconnexion</a>
-            </li>
+                
+            <form  class="nav-link" method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-responsive-nav-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Déconnexion') }}
+                    </x-responsive-nav-link>
+                </form>
+
+             </li>
+
              
         </ul>
 

@@ -26,21 +26,25 @@
         <div class="col-md-6">
             <form method="post" action="{{ route('banques.store')}}" >
                 @csrf
-                <h1>Formilaire de la banque</h1>
+                <h1>Formulaire de la banque</h1>
 
                 <div class="form-group">
                     <label for="exampleInputPassword1">Nom</label>
-                    <input type="text" name="nom" class="form-control" id="exampleInputPassword1" placeholder="Nom" required="required">
+                    <input type="text" name="nom" class="form-control"   required="required">
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" required="required">
+                    <input type="email" name="email" class="form-control"   aria-describedby="emailHelp"   required="required">
                     
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Adresse</label>
-                    <input type="text" name="adresse" class="form-control" id="exampleInputPassword1" placeholder="Adresse" required="required">
+                    <input type="text" name="adresse" class="form-control"     required="required">
+                </div>
+                <div class="form-group">
+                    <label >Commision</label>
+                    <input type="number" name="commission" class="form-control"     >
                 </div>
                  
                 <button type="submit" class="btn btn-primary">Enregistrer</button>

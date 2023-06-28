@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('emprunts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('banque_id')->constrained();
-            $table->string('nom');
-            $table->string('prenom');
-            $table->string('telephone');
-            $table->string('code_pin');
+            $table->foreignId('compte_id')->constrained();
+            $table->double('montant');
+            $table->double('total_rembourser');
+
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('emprunts');
     }
 };

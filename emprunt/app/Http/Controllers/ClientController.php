@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banque;
 use App\Models\Client;
+use App\Models\Compte;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -12,9 +14,10 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
+        //$clients = Client::all();
+        $comptes = Compte::all();
 
-        return view('emprunt.liste_client', compact('clients'));
+        return view('emprunt.liste_client', compact('comptes'));
     }
 
     /**
@@ -22,7 +25,9 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('emprunt.client');
+        $banques = Banque::all();
+
+        return view('emprunt.client', compact('banques'));
     }
 
     /**
@@ -33,6 +38,7 @@ class ClientController extends Controller
         $request->validate([
             'nom' => 'required|unique:banques',
             'prenom' => 'required',
+            'banque' => 'required',
         ]);
 
         $client = new Client();
@@ -40,11 +46,20 @@ class ClientController extends Controller
         $client->prenom= $request->prenom;
         $client->code_pin = $request->code_pin;
         $client->telephone = $request->telephone;
+        $client->banque_id = $request->banque;
 
         //sauvegarder de la banque
         $client->save();
 
-        return redirect('clients');
+        $compte = new Compte();
+        $compte->solde = 0;
+        $compte->statut = true;
+        $compte->numero = 'COMPTE_'.Compte::count()+1;
+        $compte->client_id = $client->id;
+
+        $compte->save();
+
+        return redirect('/welcome');
     }
 
     /**
@@ -78,4 +93,33 @@ class ClientController extends Controller
     {
         //
     }
+
+    /**
+     * Activer le compte du client 
+     */
+
+    public function activer($id)
+    {
+        $compte = Compte::findOrFail($id);
+        $compte->statut = true;
+
+        $compte->save();
+
+        return redirect('/clients');  
+    }
+
+    /**
+     * Désactiver le compte du client 
+     */
+
+    public function desactiver($id)
+    {
+        $compte = Compte::findOrFail($id);
+        $compte->statut = false;
+
+        $compte->save();
+
+        return redirect('/clients');  
+    }
+
 }

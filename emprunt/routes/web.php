@@ -18,11 +18,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');
+
 Route::get('client', function () {
-    return view('client');
+    return view('emprunt.client');
 });
 
+ //afficher la page de création sans pour autant se connecter
+Route::get('client',[ClientController::class, 'create'])->name('client');
+
+Route::resource('clients', ClientController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -35,9 +44,13 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('banques', BanqueController::class);
-    Route::resource('clients', ClientController::class);
 
     Route::get('supprimer/{id}/',[BanqueController::class, 'supprimer'])->name('supprimer');
+
+    Route::get('activer/{id}/',[ClientController::class, 'activer'])->name('activer');
+
+    Route::get('desactiver/{id}/',[ClientController::class, 'desactiver'])->name('desactiver');
+
 
 });
 

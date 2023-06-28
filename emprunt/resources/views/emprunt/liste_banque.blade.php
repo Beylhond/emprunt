@@ -15,21 +15,40 @@
     <div class="container mt-4">
         <ul class="nav justify-content-end">
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('dashboard') }}">Accueil</a>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('dashboard') }}">Accueil</a>
+        </li>
+
+        <li class="nav-item">
+                <a class="nav-link" href="{{ route('banques.index') }}">Liste des banques</a>
             </li>
-             
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('clients.index') }}">Liste des clients</a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('banques.create') }}">Ajouter une ligne</a>
             </li>
-            
+  
+            <li class="nav-item">
+                
+            <form  class="nav-link" method="POST" action="{{ route('logout') }}">
+                    @csrf
 
-             
+                    <x-responsive-nav-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Déconnexion') }}
+                    </x-responsive-nav-link>
+                </form>
+
+             </li>  
         </ul>
 
         <!--formulaire-->
 
-        <div class="col-md-8">
+        <div class="col-md-12">
             <h1>Liste des banques</h1>
         <table class="table">
             <thead class="thead-dark">
@@ -37,7 +56,8 @@
             <th scope="col">Nom</th>
             <th scope="col">Email</th>
             <th scope="col">Adresse</th>
-            <th></th>
+            <th scope="col">Commission</th>
+            <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -47,8 +67,10 @@
             
             <td>{{ $banque->nom}}</td>
             <td>{{$banque->email}}</td>
-            <td>{{$banque->adresse}}</td>
-            <td><a class="nav-link" href="{{ route('supprimer',[$banque->id]) }}">Suppression</a>
+            <td>{{$banque->adresse_banque}}</td>
+            <td>{{$banque->commission}}</td>
+
+            <td><a class="nav-link" href="{{ route('supprimer',[$banque->id]) }}">Effacer</a>
         </td>
             </tr>
             @endforeach

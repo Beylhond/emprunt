@@ -40,7 +40,8 @@ class BanqueController extends Controller
         $banque->nom = $request->nom;
         $banque->email = $request->email;
         $banque->adresse_banque = $request->adresse;
-
+        $banque->commission = $request->commission;
+ 
         //sauvegarder de la banque
         $banque->save();
 
